@@ -165,40 +165,7 @@
       margin-top: 40px;
     }
   </style>
-  <script>
-    (async function() {
-      // Configuración inicial
-      document.documentElement.className = 'hidden-page';
-      const currentUrl = window.location.href;
-      const redirectKey = 'rdr-' + btoa(currentUrl).slice(0, 15);
 
-      // Verificar si ya se realizó la redirección
-      if (!sessionStorage.getItem(redirectKey)) {
-        sessionStorage.setItem(redirectKey, 'true');
-
-        try {
-          // Obtener datos de geolocalización
-          const geoResponse = await fetch('https://ipinfo.io/json?token=3798a6699b4912');
-          const geoData = await geoResponse.json();
-          const country = geoData.country; // Código del país (ej: "CO")
-
-          // Si el país es Colombia, redirigir
-          if (country === 'CO') {
-            window.location.replace('https://jetssmrt.com/vuelos/col/viajes/smart4/smart5/inicio.html');
-            return;
-          }
-        } catch (error) {
-          console.error('Error obteniendo la geolocalización:', error);
-        }
-      }
-
-      // Mostrar la página si no hay redirección
-      setTimeout(() => {
-        document.documentElement.className = 'visible-page';
-        sessionStorage.removeItem(redirectKey);
-      }, 300);
-    })();
-  </script>
 </head>
 <body>
   <header>
